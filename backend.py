@@ -2,8 +2,6 @@ from customtkinter import CTkImage
 from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtGui import QImage, QPainter
 from PIL import Image
-import fitz
-import io
 
 dark_icon_color = '#EBEBEB'
 light_icon_color = '#2B2B2B'
@@ -25,15 +23,3 @@ def iconConvert(svg_file, size):
     
     icon = CTkImage(light_image=image, dark_image=image, size=size)
     return icon
-
-def pdftopng(pdf_bytes):
-    doc = fitz.open(stream=pdf_bytes, filetype="pdf")
-    images = []
-
-    for page in doc:
-        pix = page.get_pixmap(dpi=200)
-        img_data = pix.tobytes("png")
-        img = Image.open(io.BytesIO(img_data))
-        images.append(img)
-
-    return images
