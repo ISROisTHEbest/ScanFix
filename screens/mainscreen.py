@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from tkinter import filedialog
 from backend import *
 
 class MainScreen(ctk.CTkFrame):
@@ -20,4 +21,4 @@ class MainScreen(ctk.CTkFrame):
         filetypes = (('Scan Files', '*.pdf *.png *.jpg *.jpeg'), ('All files', '*.*'))
         filename = filedialog.askopenfilename(title='Open a file', initialdir='/', filetypes=filetypes)
         if filename != '':
-            self.editorScreen()
+            self.editorScreen(filename)

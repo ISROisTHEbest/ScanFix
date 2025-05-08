@@ -21,9 +21,9 @@ class App(ctk.CTk):
         self.current_screen = MainScreen(self, self.show_editor_screen)
         self.current_screen.pack(fill="both", expand=True)
         
-    def show_editor_screen(self):
+    def show_editor_screen(self, file):
         self.clear_screen()
-        self.current_screen = EditorScreen(self)
+        self.current_screen = EditorScreen(self, file)
         self.current_screen.pack(fill="both", expand=True)
 
 if __name__ == '__main__':
