@@ -25,8 +25,3 @@ def iconConvert(svg_file, size):
     
     icon = CTkImage(light_image=image, dark_image=image, size=size)
     return icon
-
-def selectFile():
-    filetypes = (('Scan Files', '*.pdf *.png *.jpg *.jpeg'), ('All files', '*.*'))
-    filename = filedialog.askopenfilename(title='Open a file', initialdir='/', filetypes=filetypes)
-    print(filename)
