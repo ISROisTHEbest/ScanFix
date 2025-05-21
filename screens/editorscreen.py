@@ -26,10 +26,10 @@ class EditorScreen(ctk.CTkFrame):
         self.scroll_frame.grid_columnconfigure((0,2), weight=1)
         self.scroll_frame.grid_columnconfigure(1, weight=3)
 
-        self.back_button = ctk.CTkButton(self, text='', image=iconConvert('back.svg', (40, 40)), cursor='hand2', command=self.backButton)
+        self.back_button = ctk.CTkButton(self, text='', image=iconConvert('back.svg', (40, 40)), cursor='hand2', command=self.backButton, fg_color='transparent', width=40, height=40)
         self.back_button.grid(row=0, column=0, sticky="nw", padx=10, pady=10)
         
-        self.page_no_label = ctk.CTkLabel(self, text='Pg 1/1')
+        self.page_no_label = ctk.CTkLabel(self, text='Pg 1/1', font=('Roboto', 30))
         self.page_no_label.grid(row=0, column=2, sticky="ne", padx=10, pady=10)
 
         self.progress_bar = ctk.CTkProgressBar(self, width=300, height=20, mode='determinate')
@@ -60,14 +60,19 @@ class EditorScreen(ctk.CTkFrame):
 
             if aspect_ratio < 1:
                 height = int(width * aspect_ratio)
+                padx = 10
+                pady = 10
             else:
                 width = int(height * 1 / aspect_ratio)
+                padx = 10
+                pady = 10
 
             image = ctk.CTkImage(light_image=png, dark_image=png, size=(width, height))
 
-            ctk.CTkLabel(self.scroll_frame, image=image, text="").grid(row=page_num, column=1, sticky="nsew", padx=10, pady=10)
+            ctk.CTkLabel(self.scroll_frame, image=image, text="").grid(row=page_num, column=1, sticky="nsew", padx=padx, pady=pady)
 
             progress = (page_num + 1) / total_pages
+            self.page_no_label.configure(text=f'Pg 1/{page_num + 1}')
             self.progress_bar.set(progress)
 
         self.progress_bar.destroy()
